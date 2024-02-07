@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  service_1:
+    image: api-gateway
+    container_name : api-gateway_container
+    env_file:
+      - .env.docker.local
+    ports:
+      - 8000:8000
+    restart: always
+    labels:
+      logging: "promtail"
+      logging_jobname: "containerlogs"
+  
+  service_2:
+    image: catalog
+    container_name : catalogue_container
+    ports:
+      - 8001:8001
+    restart: always
+    env_file:
+      - .env.docker.local
+    labels:
+      logging: "promtail"
+      logging_jobname: "containerlogs"
+  
+  service_3:
+    image: animes
+    container_name : anime_container
+    ports:
+      - 8002:8002
+    restart: always
+    env_file:
+      - .env.docker.local
+    labels:
+      logging: "promtail"
+      logging_jobname: "containerlogs"
+
+  # promtail
+
+
+  # loki
+
+  # grafana
+   
